@@ -120,7 +120,7 @@ class TubeController extends UserBaseController
         $sum = Db::name("user_posted_log")->join("user_posted b", "b.id=a.posted_id")->alias("a")->where("b.uid=$uid and a.posted_id=$id")->count(); //下载次数
 
         $result['ym_url'] = $er_logo['er_logo'];
-        $result['www_url'] = 'http://' . $_SERVER['HTTP_HOST'];
+        $result['www_url'] = get_site_url();
         $result['er_logo'] = $result['www_url'] . '/' . $result['ym_url'];
         $this->assign('assets', $result);
         $this->assign('zuoc', $zuoc);
@@ -148,7 +148,7 @@ class TubeController extends UserBaseController
         $sum = Db::name("user_posted_log")->join("user_posted b", "b.id=a.posted_id")->alias("a")->where("b.uid=$uid and a.posted_id=$id")->count(); //下载次数
 
         $result['ym_url'] = $er_logo['er_logo'];
-        $result['www_url'] = 'https://' . $_SERVER['HTTP_HOST'];
+        $result['www_url'] = get_site_url();
         $result['er_logo'] = $result['www_url'] . '/' . $result['ym_url'];
         $this->assign('assets', $result);
         $this->assign('zuoc', $zuoc);
@@ -196,7 +196,7 @@ class TubeController extends UserBaseController
         //$result['ym_url']=$ym_url[1];
         //$result['www_url']=$ym_url[0]."/D";
         $result['ym_url'] = $result['er_logo'];
-        $result['www_url'] = 'http://' . $_SERVER['HTTP_HOST'];
+        $result['www_url'] = get_site_url();
         $result['er_logo'] = $result['www_url'] . '/' . $result['ym_url'];
 
         $this->assign('assets', $result);
@@ -298,7 +298,7 @@ class TubeController extends UserBaseController
         //$result['ym_url']=$ym_url[1];
         //$result['www_url']=$ym_url[0]."/D";
         $result['ym_url'] = $result['er_logo'];
-        $result['www_url'] = 'http://' . $_SERVER['HTTP_HOST'];
+        $result['www_url'] = get_site_url();
         $result['er_logo'] = $result['www_url'] . '/' . $result['ym_url'];
 
         $this->assign('assets', $result);
@@ -516,7 +516,7 @@ class TubeController extends UserBaseController
             $this->error('生成失败！');
             exit;
         }
-        $url = 'https://www.371.li/user/install/get_udid?app_id=' . $id;
+        $url = get_site_url().'/user/install/get_udid?app_id=' . $id;
         //header("Content-type: text/xml");       //  请求头
         $xml = '<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -537,7 +537,7 @@ class TubeController extends UserBaseController
             </array>
         </dict>
         <key>PayloadOrganization</key>
-        <string>www.371.li</string>
+        <string>' . get_domain() . '</string>
         <key>PayloadDisplayName</key>
         <string>' . $app['name'] . '</string>
         <key>PayloadVersion</key>

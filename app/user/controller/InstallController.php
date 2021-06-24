@@ -812,11 +812,6 @@ class InstallController extends HomeBaseController
         ];
         $sup_id = Db::name("super_signature_ipa")->insertGetId($supData);
 
-      	//$ml =  'isign -c '.$absolute_path.'public/spcer/liufuqiang/certificate.pem -k /www/wwwroot/www.371.li/public/spcer/liufuqiang/key.pem -p "'.$files.'"  -o /www/wwwroot/www.371.li/public/testIpa/'.$udid.'resigned.ipa "'.$ipa.'" 2>&1'.'<br/>';
-      	//
-      	/*file_put_contents('./ml.txt', $ml);
-      	dump($out);
-      	die();*/
         //跳转下载页面
         $this->redirect(get_site_url() . "/user/install/ios_install?sup_id=" . $sup_id.'&c_id='.$certificate_record['id'], 301);
     }

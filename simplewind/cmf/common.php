@@ -56,7 +56,15 @@ function get_config()
 
 //获取站点地址
 function get_site_url(){
-    return 'https://' . $_SERVER['HTTP_HOST'];
+    return get_protocal() . get_domain();
+}
+//获取站点域名
+function get_domain(){
+    return $_SERVER['HTTP_HOST'];
+}
+//获取站点协议
+function get_protocal(){
+    return isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://';
 }
 
 function make_password($length = 8)
