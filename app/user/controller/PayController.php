@@ -62,7 +62,7 @@ class PayController extends HomeBaseController{
         $r = Db::name('charge_log')->insert($d);
         //echo $r;die();
         if($r){
-            $url = 'https://'.$_SERVER['HTTP_HOST'].'/lib/alipay/pagepay/pagepay.php';
+            $url = get_site_url().'/lib/alipay/pagepay/pagepay.php';
             $data['order_id'] = $order_id;
             $data['coin'] = $download_coin;
             $data['subject'] = $subject;

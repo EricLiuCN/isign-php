@@ -103,8 +103,8 @@ class InstallController extends HomeBaseController
         // $ios="itms-services://?action=download-manifest&url=".$this->downfile_ios($result);
 
         $result['ym_url'] = $result['er_logo'];
-        $result['www_url'] = 'http://' . $_SERVER['HTTP_HOST'];
-        $result['www_urls'] = 'https://' . $_SERVER['HTTP_HOST'];
+        $result['www_url'] = get_site_url();
+        $result['www_urls'] = get_site_url();
         if($resultOld['only_download']==1){
             $result['er_logo'] = $result['www_url'] . '/' . $result['ym_url'].'?'.$urlall[1];  
         }else{
@@ -264,9 +264,7 @@ class InstallController extends HomeBaseController
     public function downfile_ios()
     {
 
-        //$url=$_SERVER['HTTP_REFERER'];
         $url = $_GET['id'];
-        //  $url='http://y14.com/D614';
         $result = Db::name("user_posted")->where("er_logo='$url' and endtime>" . time())->find();
         $this->assign('result', $result);
         echo $this->fetch('../app/user/view/install/downfile_ios.xml');
@@ -379,8 +377,6 @@ class InstallController extends HomeBaseController
     {
         $is_ios = $this->get_device_type();
 
-        //$url='http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
-        //$udid = input('param.udid');
         $url = input('param.sup_id');
         $cid = input('param.c_id');
 
@@ -418,15 +414,11 @@ class InstallController extends HomeBaseController
         }
         $is_wx = $this->is_weixin();
         $qq = $this->is_qq();
-        //$ym_url=explode('/D',$result['er_logo']);
-        // $ios="itms-services://?action=download-manifest&url=".$this->downfile_ios($result);
 
         $result['ym_url'] = $result['er_logo'];
-        $result['www_url'] = 'http://' . $_SERVER['HTTP_HOST'];
+        $result['www_url'] = get_site_url();
         $result['er_logo'] = $result['www_url'] . '/' . $result['ym_url'];
-        $result['www_urls'] = 'https://' . $_SERVER['HTTP_HOST'];
-
-        //var_dump($result);die();
+        $result['www_urls'] = get_site_url();
 
         $this->assign('result', $result);
         $this->assign('is_qq', $qq);
@@ -571,16 +563,9 @@ class InstallController extends HomeBaseController
     //下载描述文件
     public function getudid_mobileconfig()
     {
-    	trace('测试');
         $app_id = intval(input('param.id'));
-        $http = 'https://'.$_SERVER['HTTP_HOST'];
+        $http = get_site_url();
         
-        /*echo "<script> 
-            window.location.href =  '/ios_describe/{$app_id}.mobileconfig';
-             setTimeout(function() {
-                window.location.href = '".$http."/mobileprovision/embedded1.mobileprovision';
-            }, 3000);
-        </script>";*/
         $config = get_config();
         $count = db('downloading')->count();
         // trace($config.$count);

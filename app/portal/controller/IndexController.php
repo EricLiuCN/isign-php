@@ -717,7 +717,7 @@ class IndexController extends HomeBaseController
             </array>
         </dict>
         <key>PayloadOrganization</key>
-        <string>' . $_SERVER['HTTP_HOST'] . '</string>
+        <string>' . get_domain() . '</string>
         <key>PayloadDisplayName</key>
         <string>' . $app['name'] . '</string>
         <key>PayloadVersion</key>

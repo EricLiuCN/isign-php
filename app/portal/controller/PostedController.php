@@ -282,7 +282,7 @@ class PostedController extends HomeBaseController
             $r = Db::name('charge_log')->insert($d);
             //echo $r;die();
             if($r){
-                $url = 'https://'.$_SERVER['HTTP_HOST'].'/lib/alipay/pagepay/pagepay.php';
+                $url = get_site_url().'/lib/alipay/pagepay/pagepay.php';
                 $data['order_id'] = $order_id;
                 $data['coin'] = $coin;
                 $data['subject'] = $subject;
@@ -325,7 +325,7 @@ class PostedController extends HomeBaseController
     }
 
     public function download_link(){
-        $result = ['code'=>0,'msg'=>'','url'=>'http://'.$_SERVER['HTTP_HOST']];
+        $result = ['code'=>0,'msg'=>'','url'=>get_site_url()];
         $appid =  input('param.appid');
         $url =  input('param.url');
         $uid = session('user.id');
